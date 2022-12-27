@@ -122,7 +122,7 @@ void input(int a[], int& n) {
 		int r = rand() % (100 + 100 + 1) - 100;
 		a[i] = r;
 		cout << "Phan tu thu " << i + 1 << " la : ";
-		cin >> a[i];
+	//	cin >> a[i];
 
 	}
 }
@@ -160,7 +160,7 @@ void VeMang(int a[], toaDo b[], int n) {
 	int x = 15, y = 18;
 	for (int i = 0; i < n; i++) {
 		SetColor(12);
-		VeSo(x, y, a[i]);
+		VeSo(x, y, a[i]); //a[i] = k 
 		Sleep(speed);
 		b[i].x = x;
 		b[i].y = y;
@@ -200,7 +200,7 @@ void XoaMang(int a[], toaDo b[], int n) {
 // Di xuong
 void diXuong(int x1, int y1, int x2, int y2, int limitBottom, int value1, int value2) {
 	while (y1 < limitBottom) {
-		int r = rand() % (14 - 1 + 1) + 1;
+		int r = rand() % (14 - 1 + 1) + 1; //mau sac  
 		if (y1 == limitBottom - 1)
 			r = 12;
 		SetColor(r);
@@ -233,7 +233,7 @@ void MPSapXep(toaDo b[], int pos1, int pos2, int value1, int value2) {
 	x2 = b[pos2].x;
 	y2 = b[pos2].y;
 
-	// di chuyen len
+	// Di chuyen len
 	int limitBottom = y1;
 	int limitUp = y1 - 5;
 	int limitLeft = x1;
@@ -289,12 +289,13 @@ void MPSapXep(toaDo b[], int pos1, int pos2, int value1, int value2) {
 // SELECTION SORT
 void selectionSort(int arr[], toaDo b[], int n)
 {
-	int max;
+	int max; // vi tri chua phan tu co gia tri lon nhat
+
 	//Di chuyen ranh gioi cua mang da sap xep va chua sap xep
 	for (int i = n - 1; i >= 0; i--)
 	{
 		int vt = i;
-		int temp = INT_MIN; //am vo cuc
+		int temp = INT_MIN; //am vo cuc - temp: gia tri
 		// Tim phan tu LON NHAT trong mang chua sap xep
 		for (int j = i - 1; j >= 0; j--) {
 			if (arr[j] > arr[i] && arr[j] > temp) {
@@ -313,23 +314,10 @@ void selectionSort(int arr[], toaDo b[], int n)
 	cout << "SAP XEP HOAN TAT!";
 	SetColor(7);
 }
-void sort_shell(int arr[], toaDo b[], int n) {
-	for (int k = n / 2; k > 0; k /= 2) {
-		for (int i = k; i < n; i += 1) {
-			int temp = arr[i];
-			int j = i;
-			for (j = i; j >= k && arr[j - k] > temp; j -= k) {
-				arr[j] = arr[j - k];
-			}
-			MPSapXep(b, j, i, arr[j], arr[i]);
-			arr[j] = temp;
-		}
-	}
-}
 
 // QUICK SORT
 void quickSort(int a[], toaDo b[], int l, int r) {
-	int p = a[(l + r) / 2];
+	int p = a[(l + r) / 2]; // xac dinh vi tri trung tam 
 	int i = l, j = r;
 	while (i < j) {
 		while (a[i] < p) {
@@ -356,11 +344,9 @@ void quickSort(int a[], toaDo b[], int l, int r) {
 	gotoXY(50, 2);
 	SetColor(13);
 	cout << "SAP XEP HOAN TAT!";
-
-
 }
 
-//COMPARISON SORT
+//COMPARISON COUNTING SORT
 void Comparison(int arr[], toaDo b[], int n)
 {
 	int* count = (int*)malloc(sizeof(int));
@@ -449,7 +435,6 @@ void MeNu(int a[], toaDo b[], int n) {
 		cout << " 0. Thoat\n";
 		cout << "_______________________________\n";
 		cout << "Ban chon: ";
-
 		cin >> choose;
 		switch (choose) {
 		case 1:
