@@ -122,7 +122,7 @@ void input(int a[], int& n) {
 		int r = rand() % (100 + 100 + 1) - 100;
 		a[i] = r;
 		cout << "Phan tu thu " << i + 1 << " la : ";
-	//	cin >> a[i];
+		cin >> a[i];
 
 	}
 }
