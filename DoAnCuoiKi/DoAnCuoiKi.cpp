@@ -286,34 +286,7 @@ void MPSapXep(toaDo b[], int pos1, int pos2, int value1, int value2) {
 	diXuong(x1, y1, x2, y2, limitBottom, value1, value2);
 }
 
-// SELECTION SORT
-void selectionSort(int arr[], toaDo b[], int n)
-{
-	int max; // vi tri chua phan tu co gia tri lon nhat
 
-	//Di chuyen ranh gioi cua mang da sap xep va chua sap xep
-	for (int i = n - 1; i >= 0; i--)
-	{
-		int vt = i;
-		int temp = INT_MIN; //am vo cuc - temp: gia tri
-		// Tim phan tu LON NHAT trong mang chua sap xep
-		for (int j = i - 1; j >= 0; j--) {
-			if (arr[j] > arr[i] && arr[j] > temp) {
-				temp = arr[j];
-				vt = j;
-			}
-		}
-		max = vt;
-		arr[max] = temp;
-		//Doi cho phan tu LON NHAT voi phan tu CUOI CUNG
-		MPSapXep(b, max, i, arr[max], arr[i]);
-		swap(arr[i], arr[max]);
-	}
-	gotoXY(50, 2);
-	SetColor(13);
-	cout << "SAP XEP HOAN TAT!";
-	SetColor(7);
-}
 
 // QUICK SORT
 void quickSort(int a[], toaDo b[], int l, int r) {
@@ -376,14 +349,46 @@ void Comparison(int arr[], toaDo b[], int n)
 	SetColor(7);
 }
 
+// SELECTION SORT
+void selectionSort(int arr[], toaDo b[], int n)
+{
+	int max; // vi tri chua phan tu co gia tri lon nhat
+
+	//Di chuyen ranh gioi cua mang da sap xep va chua sap xep
+	for (int i = n - 1; i >= 0; i--)
+	{
+		int vt = i;
+		int temp = INT_MIN; //am vo cuc - temp: gia tri
+		// Tim phan tu LON NHAT trong mang chua sap xep
+		for (int j = i - 1; j >= 0; j--) {
+			if (arr[j] > arr[i] && arr[j] > temp) {
+				temp = arr[j];
+				vt = j;
+			}
+		}
+		max = vt;
+		arr[max] = temp;
+		//Doi cho phan tu LON NHAT voi phan tu CUOI CUNG
+		MPSapXep(b, max, i, arr[max], arr[i]);
+		swap(arr[i], arr[max]);
+	}
+	gotoXY(50, 2);
+	SetColor(13);
+	cout << "SAP XEP HOAN TAT!";
+	SetColor(7);
+}
+
 //SHELL SORT
 void shellSort(int a[], toaDo b[], int n) {
-	int interval, i, j, temp;
-	for (interval = n / 2; interval > 0; interval /= 2) {
-		for (i = interval; i < n; i++) {
+	int k, i, j, temp; 
+	for (k = n / 2; k > 0; k /= 2)
+	{
+		for (i = k; i < n; i++)
+		{
 			temp = a[i];
-			for (j = i; j >= interval && a[j - interval] > temp; j -= interval) {
-				a[j] = a[j - interval];
+			for (j = i; j >= k && a[j - k] > temp; j -= k) 
+			{
+				a[j] = a[j - k];
 			}
 			MPSapXep(b, j, i, a[j], temp);
 			a[j] = temp;
@@ -394,6 +399,10 @@ void shellSort(int a[], toaDo b[], int n) {
 	cout << "SAP XEP HOAN TAT!";
 	SetColor(7);
 }
+//k = n/2=8/2=4
+// 32 45 2 90 3 19 500 34
+
+
 // ve duong bao 
 void VeDuongBao(int x1, int y1, int x2, int y2) {
 	int up = y1 - 1;
